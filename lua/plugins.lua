@@ -26,6 +26,9 @@ require('packer').startup(function(use)
   use 'tpope/vim-repeat'
   use 'tpope/vim-fugitive'
 
+  -- Lightspeed navigation
+  use 'ggandor/lightspeed.nvim'
+
   -- FZF but better?
   use {
     'nvim-telescope/telescope.nvim',

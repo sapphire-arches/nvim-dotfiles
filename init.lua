@@ -162,6 +162,14 @@ cmp.setup {
 
 -- Lualine config
 require('lualine').setup {
+  sections = {
+    lualine_c = {
+      {
+        'filename',
+        path=1
+      }
+    }
+  }
 }
 
 -- Mappings to close things with the leader key

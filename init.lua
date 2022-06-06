@@ -72,7 +72,7 @@ require('rust-tools').setup({
   server = {
     on_attach = on_attach,
     -- TODO: move this script to somewhere under the nvim data directory
-    cmd = { '/home/bob_twinkles/.vim/bin/rust-analyzer-from-path.sh' },
+    cmd = { vim.fn.stdpath('config')..'/bin/rust-analyzer-from-path.sh' },
     settings = {
       ["rust-analyzer"] = {
         cargo = {

@@ -197,4 +197,7 @@ set softtabstop=2
 set shiftwidth=2
 set expandtab
 
+" Expose title to the window system
+set title
+
 ]])

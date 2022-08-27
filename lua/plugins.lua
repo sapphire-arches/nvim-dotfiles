@@ -61,6 +61,10 @@ require('packer').startup(function(use)
   use { 'saadparwaiz1/cmp_luasnip' } -- Snippets source for nvim-cmp
   use { 'L3MON4D3/LuaSnip' } -- Snippets plugin (required as a component of cmp
 
+  -- Autoclose defs
+  use { 'tpope/vim-endwise' }
+  use { 'windwp/nvim-autopairs' }
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then

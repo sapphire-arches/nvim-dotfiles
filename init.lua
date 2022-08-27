@@ -24,24 +24,11 @@ function imap(shortcut, command)
 end
 
 -- Telescope config
-require('telescope').setup {
-  extensions = {
-    fzf = {
-      fuzzy = true,                    -- false will only do exact matching
-      override_generic_sorter = true,  -- override the generic sorter
-      override_file_sorter = true,     -- override the file sorter
-      case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
-    }
-  }
-}
+require('rc_telescope')
 
-require('telescope').load_extension('fzf')
-
-nmap('<leader>p' , '<cmd>Telescope find_files<cr>')
-nmap('<leader>b' , '<cmd>Telescope buffers<cr>')
-nmap('<leader>s' , '<cmd>Telescope live_grep<cr>')
-nmap('<leader>sl', '<cmd>lua require("telescope.builtin").live_grep({grep_open_files=true})<cr>')
-nmap('<leader>st', '<cmd>Telescope treesitter<cr>')
+-- autopairs
+require('nvim-autopairs').setup({
+})
 
 -- LSP config
 local lspconfig = require('lspconfig')
@@ -90,6 +77,7 @@ require('rust-tools.hover_actions').hover_actions()
 
 -- Autocomplete config
 local cmp = require 'cmp'
+local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
 local luasnip = require 'luasnip'
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -113,7 +101,7 @@ cmp.setup {
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping.close(),
-    ['<CR>'] = cmp.mapping.confirm {
+    ['<S-CR>'] = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
     },
@@ -159,6 +147,11 @@ cmp.setup {
     ghost_text = true,
   }
 }
+
+cmp.event:on(
+  'confirm_done',
+  cmp_autopairs.on_confirm_done()
+)
 
 -- Lualine config
 require('lualine').setup {

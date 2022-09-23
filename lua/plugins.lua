@@ -33,8 +33,8 @@ require('packer').startup(function(use)
   use 'tpope/vim-repeat'
   use 'tpope/vim-fugitive'
 
-  -- Lightspeed navigation
-  use 'ggandor/lightspeed.nvim'
+  -- Leap navigation
+  use 'ggandor/leap.nvim'
 
   -- FZF but better?
   use {

@@ -1,4 +1,7 @@
 local lspconfig = require('lspconfig')
+local cmp_nvim_lsp = require 'cmp_nvim_lsp'
+
+local capabilities = cmp_nvim_lsp.default_capabilities()
 
 local on_attach = function(client, buffer) 
   local function map_buf(mode, shortcut, command)
@@ -11,7 +14,7 @@ local on_attach = function(client, buffer)
 
   nmap_buf('gd', '<cmd>lua vim.lsp.buf.definition()<CR>')
   nmap_buf('K' , '<cmd>lua vim.lsp.buf.hover()<CR>')
-  nmap_buf(',=', '<cmd>lua vim.lsp.buf.formatting()<CR>')
+  nmap_buf(',=', '<cmd>lua vim.lsp.buf.format { async = true }<CR>')
 
   nmap_buf('<leader>qf', '<cmd>lua vim.lsp.buf.code_action()<CR>')
   nmap_buf('<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>')
@@ -23,6 +26,7 @@ end
 
 -- Rust LSP config
 require('rust-tools').setup({
+  capabilities = capabilities,
   server = {
     on_attach = on_attach,
     -- TODO: move this script to somewhere under the nvim data directory

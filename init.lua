@@ -36,10 +36,8 @@ require('bt_lsp')
 -- Autocomplete config
 local cmp = require 'cmp'
 local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
+local cmp_nvim_lsp = require 'cmp_nvim_lsp'
 local luasnip = require 'luasnip'
-
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
 local has_words_before = function()
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
